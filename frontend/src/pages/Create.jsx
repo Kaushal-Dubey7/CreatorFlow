@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import API_URL from '../config';
 import { useNavigate } from 'react-router-dom';
 import { Save, ArrowRight, Image, RefreshCw, PenTool, Layout, FileText } from 'lucide-react';
 
@@ -22,7 +23,7 @@ function Create({ activePipelineId }) {
     const fetchPipeline = async () => {
       try {
         setLoading(true);
-        const res = await fetch(`http://localhost:8000/api/pipelines/${activePipelineId}`);
+        const res = await fetch(`${API_URL}/api/pipelines/${activePipelineId}`);
         if (res.ok) {
           const data = await res.json();
           setPipeline(data);
@@ -45,7 +46,7 @@ function Create({ activePipelineId }) {
   const fetchThumbnail = async (thumbnailTitle, styleName) => {
     setImageLoading(true);
     try {
-      const res = await fetch('http://localhost:8000/api/thumbnail', {
+      const res = await fetch(`${API_URL}/api/thumbnail`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -80,7 +81,7 @@ function Create({ activePipelineId }) {
     if (!activePipelineId) return;
     setSaving(true);
     try {
-      const res = await fetch(`http://localhost:8000/api/pipelines/${activePipelineId}`, {
+      const res = await fetch(`${API_URL}/api/pipelines/${activePipelineId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

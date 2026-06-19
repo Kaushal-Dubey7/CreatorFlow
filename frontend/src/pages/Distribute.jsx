@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import API_URL from '../config';
 import { useNavigate } from 'react-router-dom';
 import { Share2, ArrowRight, CheckCircle2, AlertCircle, RefreshCw, Play, Laptop, CloudLightning } from 'lucide-react';
 
@@ -31,7 +32,7 @@ function Distribute({ activePipelineId }) {
     const fetchPipeline = async () => {
       try {
         setLoading(true);
-        const res = await fetch(`http://localhost:8000/api/pipelines/${activePipelineId}`);
+        const res = await fetch(`${API_URL}/api/pipelines/${activePipelineId}`);
         if (res.ok) {
           const data = await res.json();
           setPipeline(data);
@@ -94,7 +95,7 @@ function Distribute({ activePipelineId }) {
       }
 
       // Call backend to complete the pipeline state change
-      const res = await fetch('http://localhost:8000/api/publish', {
+      const res = await fetch(`${API_URL}/api/publish`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

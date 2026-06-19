@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import API_URL from '../config';
 import { useNavigate } from 'react-router-dom';
 import { BarChart3, Eye, ThumbsUp, Share2, MessageSquare, RefreshCw, ArrowLeft, ArrowUpRight } from 'lucide-react';
 
@@ -10,7 +11,7 @@ function Analytics() {
   const fetchAnalytics = async () => {
     try {
       setLoading(true);
-      const res = await fetch('http://localhost:8000/api/analytics');
+      const res = await fetch(`${API_URL}/api/analytics`);
       if (res.ok) {
         const result = await res.json();
         setData(result);

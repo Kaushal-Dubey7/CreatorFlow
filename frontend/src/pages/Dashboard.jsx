@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import API_URL from '../config';
 import { useNavigate } from 'react-router-dom';
 import { Plus, ArrowRight, Eye, ThumbsUp, Share2, MessageSquare, Play, RefreshCw } from 'lucide-react';
 
@@ -13,12 +14,12 @@ function Dashboard({ setActivePipelineId }) {
     try {
       setLoading(true);
       // Fetch pipelines
-      const pipesRes = await fetch('http://localhost:8000/api/pipelines');
+      const pipesRes = await fetch(`${API_URL}/api/pipelines`);
       const pipesData = await pipesRes.json();
       setPipelines(pipesData.pipelines);
 
       // Fetch analytics
-      const statsRes = await fetch('http://localhost:8000/api/analytics');
+      const statsRes = await fetch(`${API_URL}/api/analytics`);
       const statsData = await statsRes.json();
       setStats(statsData.overview);
     } catch (err) {

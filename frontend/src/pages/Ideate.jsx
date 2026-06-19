@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import API_URL from '../config';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { Sparkles, Brain, ArrowRight, CheckCircle2, ChevronRight, PenTool } from 'lucide-react';
 
@@ -30,7 +31,7 @@ function Ideate({ setActivePipelineId }) {
     setBrief(null);
 
     try {
-      const res = await fetch('http://localhost:8000/api/ideate', {
+      const res = await fetch(`${API_URL}/api/ideate`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ keyword: activeKeyword }),
